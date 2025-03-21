@@ -4,6 +4,8 @@ import com.example.lota.com.Configuring.Core.Spring.Application.doa.ExpenseDAO;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ExpenseServiceImpl implements ExpenseService {
 
@@ -16,7 +18,11 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public Expense addExpense(Expense expense) {
-        return expenseDAO.save(expense);
+        Expense expense1 = new Expense();
+        expense1.setAmount(expense.getAmount());
+        expense1.setCategory(expense.getCategory());
+        expense1.setDescription(expense.getDescription());
+        return expenseDAO.save(expense1);
     }
 
     @Override
@@ -25,8 +31,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public void deleteExpense() {
-
+    public void deleteExpense(long id) {
+        expenseDAO.delete(id);
     }
 
     @Override
@@ -35,8 +41,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public void getAllExpenses() {
-
+    public List<Expense> getAllExpenses() {
+        return expenseDAO.findAll();
     }
 
     @Override
