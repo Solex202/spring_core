@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class ExpenseDAO {
@@ -16,16 +18,20 @@ public class ExpenseDAO {
     public ExpenseDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    public void save(Expense expense){
+    public Expense save(Expense expense){
         System.out.println("ExpenseDAO: save method");
-        sessionFactory.getCurrentSession().saveOrUpdate(expense);
+        sessionFactory.getCurrentSession().save(expense);
+
+        return expense;
     }
 
-    public void update(){
+    public Expense update(Expense expense){
         System.out.println("ExpenseDAO: update method");
+        sessionFactory.getCurrentSession().update(expense);
+        return expense;
     }
 
-    public void delete(int id){
+    public void delete(long id){
         System.out.println("ExpenseDAO: delete method");
         Session session = sessionFactory.getCurrentSession();
         Expense expense = session.get(Expense.class, id);
@@ -34,14 +40,18 @@ public class ExpenseDAO {
               }
     }
 
-    public void findAll(){
+    public List<Expense> findAll(){
         System.out.println("ExpenseDAO: findAll method");
-        sessionFactory.getCurrentSession().createQuery("FROM Expense", Expense.class)
+       return sessionFactory.getCurrentSession()
+               .createQuery("FROM Expense", Expense.class)
                 .getResultList();
     }
 
-    public void findById(){
+    public Expense findById(long id){
         System.out.println("ExpenseDAO: findById method");
+        Session session = sessionFactory.getCurrentSession();
+        Expense expense = session.get(Expense.class, id);
+        return expense;
     }
 
     public void findByAmount(){
