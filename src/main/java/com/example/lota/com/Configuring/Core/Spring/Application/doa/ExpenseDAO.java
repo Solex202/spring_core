@@ -2,6 +2,7 @@ package com.example.lota.com.Configuring.Core.Spring.Application.doa;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import jakarta.transaction.Transactional;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -24,11 +25,13 @@ public class ExpenseDAO {
         System.out.println("ExpenseDAO: update method");
     }
 
-    public void delete(){
+    public void delete(int id){
         System.out.println("ExpenseDAO: delete method");
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM Expense WHERE id = :id")
-                .setParameter("id", 1)
-                .executeUpdate();
+        Session session = sessionFactory.getCurrentSession();
+        Expense expense = session.get(Expense.class, id);
+              if (expense != null){
+                  session.delete(expense);
+              }
     }
 
     public void findAll(){
