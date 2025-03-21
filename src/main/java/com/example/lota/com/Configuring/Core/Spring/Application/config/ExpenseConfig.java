@@ -27,9 +27,14 @@ public class ExpenseConfig {
    public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/expense");
+        dataSource.setUrl("jdbc:postgresql://127.0.0.1:5431/expensedb");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("password");
+        dataSource.setPassword("postgres");
+
+        dataSource.setInitialSize(5);
+        dataSource.setMaxTotal(10);
+        dataSource.setMaxIdle(5);
+        dataSource.setMinIdle(2);
         return dataSource;
     }
 
@@ -37,7 +42,7 @@ public class ExpenseConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setHibernateProperties(hibernateProperties());
+//        sessionFactory.setHibernateProperties(hibernateProperties());
         sessionFactory.setPackagesToScan("com.example.lota.com.Configuring.Core.Spring.Application.model");
         return sessionFactory;
     }
