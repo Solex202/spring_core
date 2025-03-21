@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.apache.commons.dbcp2.BasicDataSource;
+import javax.sql.DataSource;
 
 @Configuration
 @Component
@@ -14,13 +16,17 @@ public class ExpenseConfig {
     @Primary
     public Expense expense() {
         Expense exp = new Expense();
-        exp.setName("Bills");
+        exp.setDescription("Bills");
         return exp;
     }
-    @Bean("foodie")
-    public Expense expense2( Expense expense) {
-        Expense exp = new Expense();
-        exp.setName("Food");
-        return exp;
+
+    @Bean
+   public DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/expense");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("password");
+        return dataSource;
     }
 }
