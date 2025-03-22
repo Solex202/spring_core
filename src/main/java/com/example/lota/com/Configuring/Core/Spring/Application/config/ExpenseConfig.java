@@ -1,27 +1,29 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.config;
 
-import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
+@EnableWebMvc
 @Configuration
-@Component
+@ComponentScan(basePackages = "com.example.lota.com.Configuring.Core.Spring.Application")
 public class ExpenseConfig {
 
-    @Bean
-    @Primary
-    public Expense expense() {
-        Expense exp = new Expense();
-        exp.setDescription("Bills");
-        return exp;
-    }
+//    @Bean
+//    @Primary
+//    public Expense expense() {
+//        Expense exp = new Expense();
+//        exp.setDescription("Bills");
+//        return exp;
+//    }
 
     @Bean
    public DataSource dataSource() {
@@ -42,7 +44,7 @@ public class ExpenseConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-//        sessionFactory.setHibernateProperties(hibernateProperties());
+        sessionFactory.setHibernateProperties(hibernateProperties());
         sessionFactory.setPackagesToScan("com.example.lota.com.Configuring.Core.Spring.Application.model");
         return sessionFactory;
     }
