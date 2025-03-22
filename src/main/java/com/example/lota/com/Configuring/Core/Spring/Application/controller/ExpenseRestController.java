@@ -5,8 +5,11 @@ import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseS
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller("api/v1/expenses")
+@RestController()
+@RequestMapping("/api/v1/expenses")
 public class ExpenseRestController {
 
     private final ExpenseService expenseService;
