@@ -18,10 +18,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public Expense addExpense(Expense expense) {
-        Expense expense1 = new Expense();
-        expense1.setAmount(expense.getAmount());
-        expense1.setCategory(expense.getCategory());
-        expense1.setDescription(expense.getDescription());
+        Expense expense1 = new Expense(expense.getDescription(), expense.getCategory(), expense.getAmount());
+
         return expenseDAO.save(expense1);
     }
 
