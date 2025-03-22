@@ -17,8 +17,8 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, String description, Category category, int amount) {
-        this.id = id;
+    public Expense(String description, Category category, double amount) {
+
         this.description = description;
         this.category = category;
         this.amount = amount;
@@ -28,7 +28,7 @@ public class Expense {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
