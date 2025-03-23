@@ -8,9 +8,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class ConfiguringCoreSpringApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ExpenseConfig.class);
-		System.out.println(context.getBeansOfType(Expense.class));
+//		System.out.println(context.getBeansOfType(Expense.class));
+		Thread.currentThread().join();
+
 	}
 
 }
