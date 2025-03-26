@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-//import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.Properties;
 
-//@EnableWebMvc
+@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.example.lota.com.Configuring.Core.Spring.Application")
-public class ExpenseConfig {
+public class ExpenseConfig implements WebMvcConfigurer {
 
     @Bean
    public DataSource dataSource() {
