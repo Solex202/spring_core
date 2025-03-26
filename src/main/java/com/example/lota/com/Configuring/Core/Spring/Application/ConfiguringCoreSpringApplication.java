@@ -9,15 +9,17 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class ConfiguringCoreSpringApplication {
 	public static void main(String[] args) throws Exception {
 		Tomcat tomcat = new Tomcat();
-		tomcat.setPort(8088);
+		tomcat.setPort(8080);
 		Context ctx = tomcat.addContext("", System.getProperty("java.io.tmpdir"));
 
-		// Create and configure Spring Web Application Context
+		// Create context WITHOUT manual refresh
 		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-		appContext.register(ExpenseConfig.class); // Replace with your configuration class
-//		appContext.refresh();
-		// Add DispatcherServlet
+		appContext.register(ExpenseConfig.class);
+
+		// Create servlet with the context
 		DispatcherServlet servlet = new DispatcherServlet(appContext);
+
+		// Register servlet with Tomcat
 		Tomcat.addServlet(ctx, "dispatcher", servlet);
 		ctx.addServletMappingDecoded("/*", "dispatcher");
 
