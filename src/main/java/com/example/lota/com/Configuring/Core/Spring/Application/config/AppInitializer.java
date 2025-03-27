@@ -20,4 +20,9 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+    @Override
+    protected String getServletName() {
+        return "myDispatcher"; // <-- prevent conflict
+    }
 }
