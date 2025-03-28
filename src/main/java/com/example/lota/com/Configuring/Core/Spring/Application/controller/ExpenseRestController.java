@@ -3,10 +3,7 @@ package com.example.lota.com.Configuring.Core.Spring.Application.controller;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/api/v1/expenses")
@@ -23,4 +20,10 @@ public class ExpenseRestController {
         expenseService.addExpense(expense);
         System.out.println("ExpenseRestController: addExpense method");
     }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "Server is running!";
+    }
+
 }
