@@ -3,10 +3,12 @@ package com.example.lota.com.Configuring.Core.Spring.Application.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Component;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,7 +20,8 @@ import java.util.Properties;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = "com.example.lota.com.Configuring.Core.Spring.Application")
+@ComponentScan(basePackages = "com.example.lota.com.Configuring.Core.Spring.Application",
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Controller.class))
 public class ExpenseConfig implements WebMvcConfigurer {
 
     @Override
@@ -35,7 +38,7 @@ public class ExpenseConfig implements WebMvcConfigurer {
    public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://127.0.0.1:5431/expensedb");
+        dataSource.setUrl("jdbc:postgresql://localhost:5431/expensedb");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres");
         dataSource.setDefaultAutoCommit(false);
