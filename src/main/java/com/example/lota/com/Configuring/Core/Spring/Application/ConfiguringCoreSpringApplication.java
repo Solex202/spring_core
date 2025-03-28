@@ -20,13 +20,10 @@ public class ConfiguringCoreSpringApplication {
 //		tomcat.setPort(8081);
 		tomcat.getServer().setPort(8081);
 
-		// Create proper web application context
 		Context ctx = tomcat.addWebapp("", System.getProperty("java.io.tmpdir"));
 
-		// Initialize Spring context PROPERLY
 		WebApplicationContext appContext = createWebApplicationContext();
 
-		// Add Spring dispatcher servlet
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(appContext);
 		Tomcat.addServlet(ctx, "dispatcher", dispatcherServlet);
 		ctx.addServletMappingDecoded("/", "dispatcher");
