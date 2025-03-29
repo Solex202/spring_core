@@ -2,10 +2,11 @@ package com.example.lota.com.Configuring.Core.Spring.Application.controller;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController()
+@RestController
 @RequestMapping("/api/v1/expenses")
 public class ExpenseRestController {
 
@@ -15,10 +16,12 @@ public class ExpenseRestController {
         System.out.println("ExpenseRestController bean created!");
     }
 
-    @PostMapping("/add")
-    public void addExpense(@RequestBody Expense expense){
-        expenseService.addExpense(expense);
+    @PostMapping(value = "/add", consumes = "application/json")
+    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense){
+        Expense response = expenseService.addExpense(expense);
         System.out.println("ExpenseRestController: addExpense method");
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/ping")
