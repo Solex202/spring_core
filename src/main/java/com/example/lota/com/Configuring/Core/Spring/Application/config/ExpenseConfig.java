@@ -1,5 +1,6 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.config;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -21,6 +23,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "com.example.lota.com.Configuring.Core.Spring.Application",
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Controller.class))
+@EnableTransactionManagement
 public class ExpenseConfig implements WebMvcConfigurer {
 
     @Override
@@ -70,10 +73,16 @@ public class ExpenseConfig implements WebMvcConfigurer {
         return properties;
     }
 
+//    @Bean
+//    public HibernateTransactionManager transactionManager() {
+//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+//        transactionManager.setSessionFactory(sessionFactory().getObject());
+//        return transactionManager;
+//    }
+
     @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+
+        return new HibernateTransactionManager(sessionFactory);
     }
 }
