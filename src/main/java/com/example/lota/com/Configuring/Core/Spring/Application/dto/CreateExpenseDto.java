@@ -1,7 +1,5 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.dto;
 
-import com.example.lota.com.Configuring.Core.Spring.Application.model.Category;
-
 public class CreateExpenseDto {
 
     private String description;
@@ -10,6 +8,11 @@ public class CreateExpenseDto {
 
     private double amount;
 
+    public CreateExpenseDto(String description, String category, double amount){
+        this.description = description;
+        this.category = category;
+        this.amount = amount;
+    }
     public void setDescription(String description){
         this.description = description;
     }
