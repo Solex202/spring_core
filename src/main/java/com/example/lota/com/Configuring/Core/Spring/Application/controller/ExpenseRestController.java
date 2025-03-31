@@ -1,5 +1,6 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.controller;
 
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ExpenseRestController {
     }
 
     @PostMapping(value = "/add", consumes = "application/json")
-    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense){
+    public ResponseEntity<Expense> addExpense(@RequestBody CreateExpenseDto expense){
         Expense response = expenseService.addExpense(expense);
         System.out.println("ExpenseRestController: addExpense method");
 
