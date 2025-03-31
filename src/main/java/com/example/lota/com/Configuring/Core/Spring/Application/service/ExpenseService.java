@@ -1,12 +1,13 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.service;
 
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 
 import java.util.List;
 
 public interface ExpenseService {
 
-    public Expense addExpense(Expense expense);
+    public Expense addExpense(CreateExpenseDto expense);
 
     public void updateExpense(Expense expense);
 
