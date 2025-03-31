@@ -9,4 +9,8 @@ public class CreateExpenseDto {
     private Category category;
 
     private double amount;
+
+    public void setDescription(String description){
+        this.description = description;
+    }
 }
