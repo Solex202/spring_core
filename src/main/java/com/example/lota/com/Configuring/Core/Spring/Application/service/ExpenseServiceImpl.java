@@ -1,6 +1,8 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.service;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.doa.ExpenseDAO;
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
+import com.example.lota.com.Configuring.Core.Spring.Application.model.Category;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
@@ -19,10 +21,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     @Transactional
-    public Expense addExpense(Expense expense) {
-        Expense expense1 = new Expense(expense.getDescription(), expense.getCategory(), expense.getAmount());
+    public Expense addExpense(CreateExpenseDto createExpenseDto) {
+        Expense expense = new Expense(createExpenseDto.getDescription(), Category.valueOf(createExpenseDto.getCategory()), createExpenseDto.getAmount());
 
-        return expenseDAO.save(expense1);
+        return expenseDAO.save(expense);
     }
 
     @Override
