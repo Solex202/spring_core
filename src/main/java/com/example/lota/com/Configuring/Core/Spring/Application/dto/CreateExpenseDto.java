@@ -24,4 +24,16 @@ public class CreateExpenseDto {
     public void setAmount(double amount){
         this.amount = amount;
     }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public String getCategory(){
+        return category;
+    }
+
+    public double getAmount(){
+        return amount;
+    }
 }
