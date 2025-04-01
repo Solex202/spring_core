@@ -22,6 +22,12 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     @Transactional
     public Expense addExpense(CreateExpenseDto createExpenseDto) {
+        if (createExpenseDto == null) {
+            throw new IllegalArgumentException("Expense cannot be null");
+        }
+        if (expenseDAO.existsByDescription(createExpenseDto.getDescription())) {
+            throw new IllegalArgumentException("Expense already exists");
+        }
         Expense expense = new Expense(createExpenseDto.getDescription(), Category.valueOf(createExpenseDto.getCategory()), createExpenseDto.getAmount());
 
         return expenseDAO.save(expense);
