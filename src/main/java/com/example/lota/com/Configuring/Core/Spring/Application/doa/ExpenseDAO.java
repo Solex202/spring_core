@@ -102,4 +102,11 @@ public class ExpenseDAO {
     public void findByUserAndUserAndCategory() {
         System.out.println("ExpenseDAO: findByUserAndUserAndCategory");
     }
+
+    public boolean existsByDescription(String description) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM Expense WHERE description = :description", Expense.class)
+                .setParameter("description", description)
+                .uniqueResult() != null;
+    }
 }
