@@ -30,4 +30,11 @@ public class ExpenseRestController {
         return "Server is running!";
     }
 
+    @DeleteMapping( "/delete/{id}")
+    public ResponseEntity<String> deleteExpense(@PathVariable Long id){
+        expenseService.deleteExpense(id);
+        System.out.println("ExpenseRestController: deleteExpense method");
+        return ResponseEntity.ok("Expense deleted");
+    }
+
 }
