@@ -39,7 +39,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public void deleteExpense(long id) {
+    @Transactional
+    public void deleteExpense(Long id) {
         expenseDAO.delete(id);
     }
 
