@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-//@Transactional
 public class ExpenseDAO {
 
 
@@ -50,8 +49,7 @@ public class ExpenseDAO {
     public Expense findById(long id){
         System.out.println("ExpenseDAO: findById method");
         Session session = sessionFactory.getCurrentSession();
-        Expense expense = session.get(Expense.class, id);
-        return expense;
+        return session.get(Expense.class, id);
     }
 
     public void findByAmount(){
