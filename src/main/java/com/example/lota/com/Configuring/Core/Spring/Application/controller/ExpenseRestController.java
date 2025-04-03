@@ -4,7 +4,6 @@ import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpens
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
