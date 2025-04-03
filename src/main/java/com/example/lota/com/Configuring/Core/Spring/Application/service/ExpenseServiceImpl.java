@@ -41,6 +41,9 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     @Transactional
     public void deleteExpense(Long id) {
+        if (!expenseDAO.existsById(id)) {
+            throw new IllegalArgumentException("Id does not exist");
+        }
         expenseDAO.delete(id);
     }
 
