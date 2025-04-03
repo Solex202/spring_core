@@ -2,6 +2,7 @@ package com.example.lota.com.Configuring.Core.Spring.Application.dto;
 
 public class UpdateExpenseDto {
 
+    private Long id;
     private String description;
 
     private String category;
@@ -38,4 +39,7 @@ public class UpdateExpenseDto {
         this.amount = amount;
     }
 
+    public Long getId() {
+        return id;
+    }
 }
