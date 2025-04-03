@@ -1,6 +1,7 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.service;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.UpdateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ExpenseService {
 
     public Expense addExpense(CreateExpenseDto expense);
 
-    public void updateExpense(Expense expense);
+    public void updateExpense(UpdateExpenseDto updateExpenseDto);
 
     public void deleteExpense(Long id);
 
