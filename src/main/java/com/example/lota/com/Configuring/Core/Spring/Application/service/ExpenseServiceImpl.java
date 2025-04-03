@@ -39,6 +39,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
+    @Transactional
     public void updateExpense(UpdateExpenseDto updateExpenseDto) {
 
         if (updateExpenseDto == null) {
