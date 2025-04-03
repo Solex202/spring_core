@@ -2,6 +2,7 @@ package com.example.lota.com.Configuring.Core.Spring.Application.service;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.doa.ExpenseDAO;
 import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.UpdateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Category;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import jakarta.transaction.Transactional;
@@ -34,7 +35,21 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public void updateExpense(Expense expense) {
+    public void updateExpense(UpdateExpenseDto updateExpenseDto) {
+
+        if (updateExpenseDto == null) {
+            throw new IllegalArgumentException("Expense cannot be null");
+        }
+
+        if (!expenseDAO.existsById(updateExpenseDto.getId())) {
+            throw new IllegalArgumentException("Id does not exist");
+        }
+
+        if (expenseDAO.existsByDescription(updateExpenseDto.getDescription())) {
+            throw new IllegalArgumentException("Expense already exists");
+        }
+
+        Expense expense = expenseDAO.findById(updateExpenseDto.getId());
         expenseDAO.update(expense);
     }
 
