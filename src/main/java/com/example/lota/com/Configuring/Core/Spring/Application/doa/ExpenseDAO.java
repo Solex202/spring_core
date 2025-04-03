@@ -107,4 +107,11 @@ public class ExpenseDAO {
                 .setParameter("description", description)
                 .uniqueResult() != null;
     }
+
+    public boolean existsById(Long id) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM Expense WHERE id = :id", Expense.class)
+                .setParameter("id", id)
+                .uniqueResult() != null;
+    }
 }
