@@ -9,10 +9,7 @@ public class UpdateExpenseDto {
 
     private double amount;
 
-    public UpdateExpenseDto(String description, String category, double amount) {
-        this.description = description;
-        this.category = category;
-        this.amount = amount;
+    public UpdateExpenseDto() {
     }
 
     public String getDescription() {
