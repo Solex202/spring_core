@@ -16,7 +16,7 @@ public class ExpenseRestController {
         System.out.println("ExpenseRestController bean created!");
     }
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(value = "/add")
     public ResponseEntity<Expense> addExpense(@RequestBody CreateExpenseDto expense){
         Expense response = expenseService.addExpense(expense);
         System.out.println("ExpenseRestController: addExpense method");
