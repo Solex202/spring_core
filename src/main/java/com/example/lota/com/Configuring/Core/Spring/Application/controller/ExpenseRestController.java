@@ -1,8 +1,10 @@
 package com.example.lota.com.Configuring.Core.Spring.Application.controller;
 
 import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
+import com.example.lota.com.Configuring.Core.Spring.Application.dto.UpdateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import com.example.lota.com.Configuring.Core.Spring.Application.service.ExpenseService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,13 @@ public class ExpenseRestController {
         expenseService.deleteExpense(id);
         System.out.println("ExpenseRestController: deleteExpense method");
         return ResponseEntity.ok("Expense deleted");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateExpense(@RequestBody UpdateExpenseDto expense){
+         expenseService.updateExpense(expense);
+        System.out.println("ExpenseRestController: updateExpense method");
+        return ResponseEntity.ok("Expense updated");
     }
 
 }
