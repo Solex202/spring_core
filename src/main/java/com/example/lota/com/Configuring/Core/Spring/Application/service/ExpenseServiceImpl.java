@@ -3,6 +3,7 @@ package com.example.lota.com.Configuring.Core.Spring.Application.service;
 import com.example.lota.com.Configuring.Core.Spring.Application.doa.ExpenseDAO;
 import com.example.lota.com.Configuring.Core.Spring.Application.dto.CreateExpenseDto;
 import com.example.lota.com.Configuring.Core.Spring.Application.dto.UpdateExpenseDto;
+import com.example.lota.com.Configuring.Core.Spring.Application.mappers.UserMapper;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Category;
 import com.example.lota.com.Configuring.Core.Spring.Application.model.Expense;
 import jakarta.transaction.Transactional;
@@ -14,8 +15,11 @@ import java.util.List;
 public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseDAO expenseDAO;
-    public ExpenseServiceImpl(ExpenseDAO expenseDAO) {
+    private final UserMapper userMapper;
+    public ExpenseServiceImpl(ExpenseDAO expenseDAO, UserMapper userMapper) {
         this.expenseDAO = expenseDAO;
+        this.userMapper = userMapper;
+
         System.out.println("ExpenseService bean created!");
     }
 
@@ -50,7 +54,8 @@ public class ExpenseServiceImpl implements ExpenseService {
         }
 
         Expense expense = expenseDAO.findById(updateExpenseDto.getId());
-        expenseDAO.update(expense);
+        Expense updatedExpense = userMapper.updateExpense(updateExpenseDto, expense);
+        expenseDAO.update(updatedExpense);
     }
 
     @Override
