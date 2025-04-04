@@ -38,7 +38,7 @@ public class ExpenseRestController {
         return ResponseEntity.ok("Expense deleted");
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity<String> updateExpense(@RequestBody UpdateExpenseDto expense){
          expenseService.updateExpense(expense);
         System.out.println("ExpenseRestController: updateExpense method");
