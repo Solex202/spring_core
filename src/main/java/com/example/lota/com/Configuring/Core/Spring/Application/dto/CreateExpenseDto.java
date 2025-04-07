@@ -11,11 +11,7 @@ public class CreateExpenseDto {
     public CreateExpenseDto(){
     }
 
-//    public CreateExpenseDto(String description, String category, double amount){
-//        this.description = description;
-//        this.category = category;
-//        this.amount = amount;
-//    }
+
     public void setDescription(String description){
         this.description = description;
     }
